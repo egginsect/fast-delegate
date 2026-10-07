@@ -1,0 +1,14 @@
+# Local credentials and environment
+typesafe_api_key.txt
+*_api_key.txt
+.env
+.env.*
+!.env.example
+
+# Local state must live outside the checkout
+/state/
+
+# Local Python test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/

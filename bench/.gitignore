@@ -1,0 +1,3 @@
+# Per-run workdirs and raw CLI logs stay local; runs.jsonl and summaries are the record
+results/*/*_*_[0-9]/
+results/*/logs/

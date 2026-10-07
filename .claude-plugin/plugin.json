@@ -1,0 +1,9 @@
+{
+  "name": "fast-delegate",
+  "description": "Discover every worker the native agent harness can spawn, attach LiteLLM price and context facts, ask Jev once to judge the task and each candidate's fit, and let code pick the cheapest fit candidate that is strictly cheaper than the lead itself; then dispatch, verify, and record.",
+  "version": "0.1.0",
+  "author": {"name": "fast-delegate contributors"},
+  "license": "MIT",
+  "repository": "https://github.com/egginsect/fast-delegate",
+  "homepage": "https://github.com/egginsect/fast-delegate"
+}

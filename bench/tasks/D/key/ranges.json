@@ -1,0 +1,24 @@
+{
+  "retry": [
+    7,
+    37
+  ],
+  "circuit_breaker": [
+    40,
+    92
+  ],
+  "bugs": {
+    "backoff_exponent": [
+      31,
+      31
+    ],
+    "jitter_after_cap": [
+      32,
+      34
+    ],
+    "sleep_after_final_attempt": [
+      35,
+      35
+    ]
+  }
+}

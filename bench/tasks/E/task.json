@@ -1,0 +1,15 @@
+{
+  "deliverable": "Fix the bug in topo_sort.py so all tests pass including the hidden test",
+  "acceptance": [
+    "All visible tests in test_topo_sort.py pass",
+    "Hidden test for diamond dependency passes (not visible to worker)"
+  ],
+  "context": {
+    "files": [
+      "topo_sort.py",
+      "test_topo_sort.py"
+    ],
+    "verifiable": true,
+    "independence": true
+  }
+}

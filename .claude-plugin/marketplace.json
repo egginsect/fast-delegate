@@ -1,0 +1,14 @@
+{
+  "name": "fast-delegate",
+  "owner": {
+    "name": "egginsect"
+  },
+  "description": "Route coding-agent subtasks to the cheapest capable worker the harness can spawn.",
+  "plugins": [
+    {
+      "name": "fast-delegate",
+      "description": "Worker routing with LiteLLM pricing and TypeSafe Jev ranking",
+      "source": "./"
+    }
+  ]
+}

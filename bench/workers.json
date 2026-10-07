@@ -1,0 +1,32 @@
+{
+  "haiku": {
+    "cli": "claude",
+    "model": "haiku",
+    "candidate": "haiku"
+  },
+  "sonnet": {
+    "cli": "claude",
+    "model": "sonnet",
+    "candidate": "sonnet"
+  },
+  "opus": {
+    "cli": "claude",
+    "model": "opus",
+    "candidate": "opus"
+  },
+  "luna": {
+    "cli": "codex",
+    "model": "gpt-5.6-luna",
+    "candidate": "proxy-gpt-5-6-luna"
+  },
+  "terra": {
+    "cli": "codex",
+    "model": "gpt-5.6-terra",
+    "candidate": "proxy-gpt-5-6-terra"
+  },
+  "sol": {
+    "cli": "codex",
+    "model": "gpt-5.6-sol",
+    "candidate": "proxy-gpt-5-6-sol"
+  }
+}

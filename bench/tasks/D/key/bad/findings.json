@@ -1,0 +1,17 @@
+[
+  {
+    "function": "retry",
+    "line": 31,
+    "description": "exponent off by one"
+  },
+  {
+    "function": "retry",
+    "line": 34,
+    "description": "jitter after cap"
+  },
+  {
+    "function": "CircuitBreaker",
+    "line": 50,
+    "description": "state handling looks off"
+  }
+]

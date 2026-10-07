@@ -1,0 +1,15 @@
+{
+  "deliverable": "Review utils.py and find all bugs; write findings to findings.json",
+  "acceptance": [
+    "findings.json contains exactly 3 bugs: chunk, business_days_between, weekday_name",
+    "Each finding has correct function name, line number (within function bounds), and description",
+    "Zero false positives (parse_duration is not a bug)"
+  ],
+  "context": {
+    "files": [
+      "utils.py"
+    ],
+    "verifiable": false,
+    "independence": false
+  }
+}

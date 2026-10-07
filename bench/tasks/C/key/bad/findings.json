@@ -1,0 +1,17 @@
+[
+  {
+    "function": "chunk",
+    "line": 20,
+    "description": "Trailing partial chunk is never yielded after the loop."
+  },
+  {
+    "function": "business_days_between",
+    "line": 38,
+    "description": "Loop is end-inclusive but docstring says end_date is excluded; should be <."
+  },
+  {
+    "function": "parse_duration",
+    "line": 59,
+    "description": "Returns 0 on invalid input instead of raising"
+  }
+]

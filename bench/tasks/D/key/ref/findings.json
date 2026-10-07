@@ -1,0 +1,17 @@
+[
+  {
+    "function": "retry",
+    "line": 31,
+    "description": "Exponent is attempt+1 so first retry waits 2*base_delay, not base_delay."
+  },
+  {
+    "function": "retry",
+    "line": 34,
+    "description": "Jitter is added after max_delay cap so delay can exceed max_delay."
+  },
+  {
+    "function": "retry",
+    "line": 35,
+    "description": "Sleeps even after the final failed attempt before raising."
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "buggy": {
+    "chunk": [
+      6,
+      21
+    ],
+    "business_days_between": [
+      24,
+      42
+    ],
+    "weekday_name": [
+      45,
+      56
+    ]
+  },
+  "neutral": {
+    "parse_duration": [
+      59,
+      94
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schema": "fast-delegate/harness/v3",
+  "note": "Claude Code harness metadata, editable data (not routing rules). builtin: caller-facing model selectors paired with underlying model names; model_name is a descriptive model name (not a pinned catalog id) resolved against the LiteLLM catalog by the same code+Jev pipeline as any other candidate; an optional description is a short capability note used only in Jev candidate state, never in routing logic; an optional inline billing object ({mode: 'metered'|'subscription'|'local', price_override: $/M or null, quota_weight: number or null}) marks a worker whose LiteLLM-derived price is not a real dollar cost -- route()/brief_output() label its cost shadow_cost instead of cost_usd for 'subscription'/'local' modes (never claim a dollar saving for a plan or self-hosted worker), and price_override, when set, is a flat $/M rate for both directions that replaces the catalog price outright (ignoring tiered/cached-input fields). A top-level billing field (a map, not a list -- keyed by candidate id, not merged by 'id' inside each entry) is the general way to billing-configure ANY candidate, not just builtins: {billing: {'<candidate id>': {mode, price_override, quota_weight, ...}}}; a builtin id's entry here wins over that same builtin's inline billing field, and this map is the ONLY way to billing-configure an agent-file (~/.claude/agents/*.md) or codex --spawnable candidate, since those have no harness.json entry of their own to carry an inline billing field. Extra keys inside one candidate's billing object (e.g. a future 'pool', for quota-aware selection) are preserved as-is, not dropped. In the local override this map is merged per candidate id (override wins for any id it names, unmatched shipped ids survive), unlike other object-valued keys which are replaced wholesale. Separately, regardless of billing: a catalog price of exactly 0 on either side (input or output) is never treated as free -- it is priced as unknown (a warning names the candidate) unless that candidate's billing.price_override is set, which always wins. catalog_provider_preference: provider prefixes preferred when a catalog id matches several prefixed keys. disabled: candidate ids never routed to and never judged by Jev. probation: candidate ids that are discovered, priced, filtered, ranked and judged like any other, but flagged when picked; a probation id auto-graduates once the ledger shows >= 2 accepted records for it (any family) with acceptance >= 50%. default_lead: the lead's own candidate/catalog id, used by the cheaper-than-lead rule when route --lead and FAST_DELEGATE_LEAD are both unset; this shipped file intentionally has none, so the lead must come from --lead, FAST_DELEGATE_LEAD, or a local override. specialization_tags: name tags marking a different model variant; fuzzy catalog matching requires the same set on both names. generic_name_tokens: tokens too generic to count as a shared word token in fuzzy catalog matching (e.g. instruct, chat, quantization tags, and single letters left over from splitting size tokens like '7b' or 'a35b'); a shortlisted key must still share at least one non-generic token with the model id. A local override at $FAST_DELEGATE_STATE/harness.json (or FAST_DELEGATE_HARNESS=path) is merged over this file: scalar keys replace, builtin/disabled/probation merge by id, override wins. harnesses: per-CLI-harness data (section N), keyed by 'claude'/'codex'; an optional 'models' list is the default spawnable-candidate allowlist when --spawnable is omitted (claude falls back to full agents-dir+builtin discovery with a warning when both are absent; codex has no file discovery and errors without one); candidate 'reasoning_effort' is model configuration metadata used as evidence, not a dispatch argument. Replaced wholesale by an override, like any other scalar/object key. quota: thresholds for quota-aware selection -- warn_at/reserve are used% and remaining% (0-100); stale_five_hour_s/stale_seven_day_s flag a snapshot as stale once its observed_at is older than that many seconds; budget_usd_per_day and max_concurrent are read and carried through (metered spend cap, local concurrency cap) but not yet enforced in this slice. Missing or non-numeric fields fall back to the built-in defaults shown here; never blocks on a malformed threshold. Replaced wholesale by an override, like harnesses. A candidate's quota pool comes from billing.pool in the same billing map described above (an explicit pool always wins; otherwise a codex --spawnable candidate defaults to pool 'codex', a harness.json builtin defaults to the active --harness name, and an agent-file candidate has no default -- quota simply doesn't apply to it, exactly like today, unless billing.pool names one). Quota only ever affects billing.mode 'subscription' candidates: it removes a candidate whose pool is at or below the reserve threshold (or exhausted) via a machine-readable filter_candidates() reason, and re-weights ranking (never the Jev fit gate) by how far usage is running ahead of the window's pace. Pool snapshots come from $FAST_DELEGATE_STATE/quota/<pool>.json (written by scripts/quota_statusline.py for 'claude'), a read-only tail of Codex's own ~/.codex/sessions/**/rollout-*.jsonl for 'codex', or route --quota/FAST_DELEGATE_QUOTA for any other pool -- never a network call.",
+  "builtin": [
+    {
+      "id": "haiku",
+      "model_name": "claude-haiku-4-5",
+      "description": "Fast, cheap general-purpose worker; best for mechanical or well-scoped tasks.",
+      "model_selector": "haiku"
+    },
+    {
+      "id": "sonnet",
+      "model_name": "claude-sonnet-5",
+      "description": "Balanced general-purpose worker for moderate-difficulty tasks.",
+      "model_selector": "sonnet"
+    },
+    {
+      "id": "opus",
+      "model_name": "claude-opus-5-5",
+      "description": "Strongest general-purpose worker; reserve for hard or high-stakes tasks.",
+      "model_selector": "opus"
+    },
+    {
+      "id": "fable",
+      "model_name": "claude-fable-5-1",
+      "description": "General-purpose model candidate with caller selector \"fable\".",
+      "model_selector": "fable"
+    }
+  ],
+  "catalog_provider_preference": [
+    "openai",
+    "anthropic"
+  ],
+  "specialization_tags": [
+    "coder",
+    "vl",
+    "vision",
+    "math",
+    "embed",
+    "embedding",
+    "audio",
+    "guard"
+  ],
+  "generic_name_tokens": [
+    "instruct",
+    "chat",
+    "it",
+    "v",
+    "b",
+    "a",
+    "preview",
+    "latest",
+    "turbo",
+    "cloud",
+    "base",
+    "hf",
+    "fp8",
+    "fp16",
+    "bf16",
+    "int4",
+    "int8",
+    "awq",
+    "gguf",
+    "maas",
+    "local",
+    "model",
+    "models",
+    "accounts"
+  ],
+  "disabled": [],
+  "probation": [],
+  "harnesses": {
+    "claude": {},
+    "codex": {}
+  },
+  "quota": {
+    "warn_at": 80,
+    "reserve": 10,
+    "stale_five_hour_s": 1800,
+    "stale_seven_day_s": 21600,
+    "budget_usd_per_day": null,
+    "max_concurrent": null
+  },
+  "model_id_placeholders": [
+    "haiku"
+  ]
+}

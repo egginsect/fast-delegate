@@ -1,0 +1,51 @@
+{
+  "subcommands": [
+    {
+      "name": "list",
+      "handler": "list_handler",
+      "line": 49
+    },
+    {
+      "name": "create",
+      "handler": "create_handler",
+      "line": 52
+    },
+    {
+      "name": "delete",
+      "handler": "delete_handler",
+      "line": 56
+    },
+    {
+      "name": "update",
+      "handler": "update_handler",
+      "line": 60
+    },
+    {
+      "name": "show",
+      "handler": "show_handler",
+      "line": 64
+    }
+  ],
+  "exit_codes": [
+    {
+      "name": "EXIT_SUCCESS",
+      "value": 0,
+      "line": 8
+    },
+    {
+      "name": "EXIT_INVALID_ARGS",
+      "value": 1,
+      "line": 9
+    },
+    {
+      "name": "EXIT_NOT_FOUND",
+      "value": 2,
+      "line": 10
+    },
+    {
+      "name": "EXIT_ALREADY_EXISTS",
+      "value": 3,
+      "line": 11
+    }
+  ]
+}

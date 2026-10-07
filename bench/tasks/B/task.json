@@ -1,0 +1,16 @@
+{
+  "deliverable": "Implement merge_intervals() and total_covered() functions in intervals.py to pass all 16 unit tests",
+  "acceptance": [
+    "All tests in test_intervals.py pass",
+    "merge_intervals correctly merges overlapping intervals",
+    "total_covered correctly computes total coverage"
+  ],
+  "context": {
+    "files": [
+      "intervals.py",
+      "test_intervals.py"
+    ],
+    "verifiable": true,
+    "independence": true
+  }
+}

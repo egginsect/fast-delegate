@@ -1,0 +1,11 @@
+fast-delegate
+
+Copyright 2026 fast-delegate contributors.
+
+Licensed under the MIT License. See LICENSE.
+
+fast-delegate may retrieve model economics and capability metadata at runtime
+from the BerriAI/litellm repository's model_prices_and_context_window.json.
+Persisted snapshots retain the upstream repository, commit, path, and content
+hash as provenance. This project does not vendor LiteLLM source code or its
+pricing database.

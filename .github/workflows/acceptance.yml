@@ -1,0 +1,24 @@
+name: Acceptance
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  # Selector 3 tracks the latest stable Python 3; pin an exact version here if needed.
+  PYTHON_VERSION: "3"
+
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+      - name: Install Python
+        run: uv python install "$PYTHON_VERSION"
+      - name: Run acceptance
+        run: CLAUDECODE=1 uv run --managed-python --python "$PYTHON_VERSION" --no-project -- make acceptance PYTHON=python

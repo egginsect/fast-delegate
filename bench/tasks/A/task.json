@@ -1,0 +1,15 @@
+{
+  "deliverable": "Parse cli.py and extract all subcommands and exit codes to answer.json",
+  "acceptance": [
+    "answer.json exists with valid JSON",
+    "Every subcommand name and source line matches the fixture exactly",
+    "Every exit code name, value, and source line matches the fixture exactly"
+  ],
+  "context": {
+    "files": [
+      "cli.py"
+    ],
+    "verifiable": true,
+    "independence": true
+  }
+}

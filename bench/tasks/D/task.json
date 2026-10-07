@@ -1,0 +1,15 @@
+{
+  "deliverable": "Review retry.py and find all bugs; write findings to findings.json",
+  "acceptance": [
+    "findings.json contains exactly 3 bugs: backoff exponent off-by-one, jitter after cap exceeds max_delay, sleep after final attempt",
+    "Each finding has correct function name and line number",
+    "Zero false positives (CircuitBreaker is clean; it is a decoy)"
+  ],
+  "context": {
+    "files": [
+      "retry.py"
+    ],
+    "verifiable": false,
+    "independence": false
+  }
+}
